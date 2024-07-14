@@ -1,0 +1,33 @@
+name: generate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches:
+      - "main"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+      - name: go vet
+        run: go vet .
+      - name: go generate
+        run: go generate .
+      - name: commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_user_name: Mark Pashmfouroush
+          commit_user_email: mark@markpash.me
+          commit_author: Mark Pashmfouroush <mark@markpash.me>
