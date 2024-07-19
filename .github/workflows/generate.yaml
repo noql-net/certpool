@@ -22,9 +22,9 @@ jobs:
           go-version: '1.22'
           check-latest: true
       - name: go vet
-        run: go vet .
+        run: go vet ./generate
       - name: go generate
-        run: go generate .
+        run: go generate ./generate
       - name: commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
