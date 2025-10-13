@@ -26,7 +26,7 @@ jobs:
       - name: go generate
         run: go generate ./generate
       - name: commit
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_user_name: Mark Pashmfouroush
           commit_user_email: mark@markpash.me
